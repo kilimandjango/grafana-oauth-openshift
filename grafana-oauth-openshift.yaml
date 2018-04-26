@@ -171,7 +171,9 @@ objects:
           - mountPath: /etc/tls/private
             name: gf-tls
           - mountPath: /etc/proxy/secrets
-            name: secrets
+            name: secrets          
+          command:
+           - "./bin/grafana-server"
 
         volumes:
         - configMap:
