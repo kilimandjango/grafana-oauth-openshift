@@ -27,12 +27,7 @@ RUN wget https://dl.google.com/go/go1.9.2.linux-amd64.tar.gz
 
 RUN tar -C /usr/local -xvf go1.9.2.linux-amd64.tar.gz
 
-#RUN export GOROOT=/usr/local/go
-#RUN export GOPATH=/root/go
-#RUN export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
-#RUN export PATH=$PATH:/usr/local/go/bin
-
-ENV PATH /usr/local/go/bin:$PATH
+ENV PATH $GOROOT/bin:$PATH
 
 RUN go version
 
