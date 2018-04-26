@@ -12,10 +12,10 @@ metadata:
 parameters:
 - description: The location of the proxy image
   name: IMAGE_GF
-  value: docker-registry.default.svc:5000/openshift/grafana:v5.04
+  value: openshift/grafana:latest
 - description: The location of the proxy image
   name: IMAGE_PROXY
-  value: pro-bas0-rpl-v02.sf-rz.de:5000/schufa_holding_ag-rh_container_images-openshift3_oauth-proxy:v3.9.14-2
+  value: openshift3/oauth-proxy:latest
 - description: External URL for the grafana route
   name: ROUTE_URL
   value: ""
