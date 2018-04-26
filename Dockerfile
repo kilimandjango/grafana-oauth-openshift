@@ -1,0 +1,52 @@
+FROM centos:7
+
+MAINTAINER Kilian Henneboehle "kilian.henneboehle@mailbox.org"
+
+ENV GOPATH /root/go
+ENV GOROOT /usr/local/go
+
+RUN pwd
+
+RUN curl --silent --location https://rpm.nodesource.com/setup_6.x | bash -
+
+RUN yum install -y --nogpgcheck \
+    wget \
+    initscripts \
+    curl \
+    tar \
+    gcc \
+    libc6-dev \
+    git \
+    nodejs \
+    bzip2 \
+    bzip2-libs;
+
+RUN yum update && yum clean all;
+
+RUN wget https://dl.google.com/go/go1.9.2.linux-amd64.tar.gz
+
+RUN tar -C /usr/local -xvf go1.9.2.linux-amd64.tar.gz
+
+#RUN export GOROOT=/usr/local/go
+#RUN export GOPATH=/root/go
+#RUN export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
+#RUN export PATH=$PATH:/usr/local/go/bin
+
+ENV PATH /usr/local/go/bin:$PATH
+
+RUN go version
+
+RUN mkdir -p $GOPATH/src/github.com/grafana && \
+    cd $GOPATH/src/github.com/grafana && pwd && \
+    git clone https://github.com/kilimandjango/grafana.git && \
+    cd grafana && pwd;
+
+RUN cd $GOPATH/src/github.com/grafana/grafana && \
+    go run build.go setup && \
+    go run build.go build && \
+    npm install -g yarn && \
+    yarn install --pure-lockfile && \
+    npm run build;
+
+WORKDIR /root/go/src/github.com/grafana/grafana
+
