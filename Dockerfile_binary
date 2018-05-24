@@ -1,0 +1,26 @@
+FROM registry.access.redhat.com/rhel7:7.4
+
+MAINTAINER Kilian Henneboehle "kilian.henneboehle@mailbox.org"
+
+USER root
+
+COPY configuration/fix-permissions /usr/bin
+
+RUN cd $HOME
+
+RUN chmod +x /usr/bin/fix-permissions
+
+RUN useradd -u 1000 -r -g 0 -m -d $HOME -s /sbin/nologin -c "grafana user" grafana && \
+    chown -R grafana:0 $HOME && \
+    fix-permissions $HOME && \
+    mkdir -p /usr/share/grafana
+
+RUN cd /usr/share/grafana && \
+    curl -O "http://<Nexus>:<Nexus_port>/grafana_ocp/grafana_ocp.tar.xz" && \
+    unxz grafana_ocp.tar.xz && \
+  tar --strip-components 1 -xf grafana_ocp.tar && \
+    fix-permissions /usr/share/grafana
+
+USER grafana
+
+WORKDIR /usr/share/grafana
