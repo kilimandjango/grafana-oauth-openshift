@@ -172,6 +172,8 @@ objects:
             name: gf-tls
           - mountPath: /etc/proxy/secrets
             name: secrets          
+          args:
+          - -config=/etc/grafana/grafana.ini
           command:
            - "./bin/grafana-server"
 
