@@ -19,7 +19,6 @@ RUN yum-config-manager --enable "rhel-server-rhscl-7-rpms" --enable "rhel-7-serv
     gcc \
     libc6-dev \
     git \
-    go \
     rh-nodejs8 \
     bzip2 \
     bzip2-libs;
