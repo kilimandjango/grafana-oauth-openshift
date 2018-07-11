@@ -10,6 +10,12 @@ ENV GOROOT=/usr/local/go \
     NPM_CONFIG_PREFIX=$HOME/.npm-global \
     PATH="$HOME/node_modules/.bin/:$HOME/.npm-global/bin/:$GOROOT/bin:$GOPATH/bin:$PATH"
 
+RUN wget https://dl.google.com/go/go1.9.2.linux-amd64.tar.gz
+
+RUN tar -C /usr/local/ -xvf go1.9.2.linux-amd64.tar.gz
+
+RUN go version
+
 RUN yum-config-manager --enable "rhel-server-rhscl-7-rpms" --enable "rhel-7-server-rpms" --enable "rhel-7-server-extras-rpms" && \
     yum install -y --nogpgcheck \
     wget \
@@ -27,12 +33,6 @@ RUN yum-config-manager --enable "rhel-server-rhscl-7-rpms" --enable "rhel-7-serv
 RUN source /opt/rh/rh-nodejs8/enable && npm --version;
 
 RUN yum -y update && yum clean all
-
-RUN wget https://dl.google.com/go/go1.9.2.linux-amd64.tar.gz
-
-RUN tar -C /usr/local/ -xvf go1.9.2.linux-amd64.tar.gz
-
-RUN go version
 
 RUN mkdir -p $GOPATH/src/github.com/grafana && \
     cd $GOPATH/src/github.com/grafana && pwd && \
