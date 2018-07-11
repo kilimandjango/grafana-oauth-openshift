@@ -5,6 +5,7 @@ MAINTAINER Kilian Henneboehle "kilian.henneboehle@mailbox.org"
 ENV GOPATH /root/go \
     GOROOT /usr/local/go \
     NODEJS_VERSION=8 \
+    NPM_RUN=start \
     NPM_CONFIG_PREFIX=$HOME/.npm-global \
     PATH=$HOME/node_modules/.bin/:$HOME/.npm-global/bin/:$PATH
 
