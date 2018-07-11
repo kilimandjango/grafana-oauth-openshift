@@ -5,9 +5,9 @@ MAINTAINER Kilian Henneboehle "kilian.henneboehle@mailbox.org"
 ENV GOPATH /root/go
 ENV GOROOT /usr/local/go
 
-RUN curl --silent --location https://rpm.nodesource.com/setup_6.x | bash -
+#RUN curl --silent --location https://rpm.nodesource.com/setup_6.x | bash -
 
-RUN yum-config-manager --enable "rhel-7-server-rpms" --enable "rhel-7-server-extras-rpms" && \
+RUN yum-config-manager --enable "rhel-server-rhscl-7-rpms" --enable "rhel-7-server-rpms" --enable "rhel-7-server-extras-rpms" && \
     yum install -y --nogpgcheck \
     wget \
     initscripts \
@@ -17,9 +17,10 @@ RUN yum-config-manager --enable "rhel-7-server-rpms" --enable "rhel-7-server-ext
     libc6-dev \
     git \
     go \
-    nodejs \
+    rh-nodejs8 \
     bzip2 \
-    bzip2-libs;
+    bzip2-libs && \
+    scl enable rh-nodejs8 bash;;
 
 RUN yum -y update && yum clean all
 
