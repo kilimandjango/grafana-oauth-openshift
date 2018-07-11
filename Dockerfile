@@ -11,7 +11,7 @@ ENV GOROOT=/usr/local/go \
     PATH="$HOME/node_modules/.bin/:$HOME/.npm-global/bin/:$GOROOT/bin:$PATH"
 
 RUN yum-config-manager --enable "rhel-server-rhscl-7-rpms" --enable "rhel-7-server-rpms" --enable "rhel-7-server-extras-rpms" && \
-    yum install -y \
+    yum install -y --nogpgcheck \
     wget \
     initscripts \
     curl \
