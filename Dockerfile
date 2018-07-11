@@ -8,7 +8,7 @@ ENV GOROOT=/usr/local/go \
     NPM_CONFIG_PREFIX=$HOME/.npm-global \
     PATH="$HOME/node_modules/.bin/:$HOME/.npm-global/bin/:$GOROOT/bin:$PATH"
 
-RUN yum-config-manager 
+RUN yum-config-manager \
     --enable "rhel-server-rhscl-7-rpms" \
     --enable "rhel-7-server-rpms" \
     --enable "rhel-7-server-extras-rpms"
