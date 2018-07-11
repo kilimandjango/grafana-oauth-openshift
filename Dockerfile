@@ -8,10 +8,10 @@ ENV GOROOT=/usr/local/go \
     NODEJS_VERSION=8 \
     NPM_RUN=start \
     NPM_CONFIG_PREFIX=$HOME/.npm-global \
-    PATH="$HOME/node_modules/.bin/:$HOME/.npm-global/bin/:$GOROOT/bin:$GOPATH/bin:$PATH"
+    PATH="$HOME/node_modules/.bin/:$HOME/.npm-global/bin/:$GOROOT/bin:$PATH"
 
 RUN yum-config-manager --enable "rhel-server-rhscl-7-rpms" --enable "rhel-7-server-rpms" --enable "rhel-7-server-extras-rpms" && \
-    yum install -y --nogpgcheck \
+    yum install -y \
     wget \
     initscripts \
     curl \
@@ -24,8 +24,6 @@ RUN yum-config-manager --enable "rhel-server-rhscl-7-rpms" --enable "rhel-7-serv
     bzip2-libs;
 
 RUN yum -y update && yum clean all
-
-# RUN wget https://dl.google.com/go/go1.9.2.linux-amd64.tar.gz 
 
 RUN wget https://dl.google.com/go/go1.9.7.linux-amd64.tar.gz
 
