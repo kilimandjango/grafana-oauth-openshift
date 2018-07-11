@@ -25,7 +25,9 @@ RUN yum-config-manager --enable "rhel-server-rhscl-7-rpms" --enable "rhel-7-serv
 
 RUN yum -y update && yum clean all
 
-RUN wget https://dl.google.com/go/go1.9.2.linux-amd64.tar.gz && tar -C /usr/local/ -xvf go1.9.2.linux-amd64.tar.gz
+RUN wget https://dl.google.com/go/go1.9.2.linux-amd64.tar.gz 
+
+RUN tar -C /usr/local/ -xvf go1.9.2.linux-amd64.tar.gz
 
 RUN go version
 
