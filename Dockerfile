@@ -2,10 +2,11 @@ FROM registry.access.redhat.com/rhel7:7.4
 
 MAINTAINER Kilian Henneboehle "kilian.henneboehle@mailbox.org"
 
-ENV GOPATH /root/go
-ENV GOROOT /usr/local/go
-
-#RUN curl --silent --location https://rpm.nodesource.com/setup_6.x | bash -
+ENV GOPATH /root/go \
+    GOROOT /usr/local/go \
+    NODEJS_VERSION=8 \
+    NPM_CONFIG_PREFIX=$HOME/.npm-global \
+    PATH=$HOME/node_modules/.bin/:$HOME/.npm-global/bin/:$PATH
 
 RUN yum-config-manager --enable "rhel-server-rhscl-7-rpms" --enable "rhel-7-server-rpms" --enable "rhel-7-server-extras-rpms" && \
     yum install -y --nogpgcheck \
