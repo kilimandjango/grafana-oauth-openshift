@@ -19,8 +19,9 @@ RUN yum-config-manager --enable "rhel-server-rhscl-7-rpms" --enable "rhel-7-serv
     go \
     rh-nodejs8 \
     bzip2 \
-    bzip2-libs && \
-    scl enable rh-nodejs8 bash;
+    bzip2-libs;
+    
+RUN scl enable rh-nodejs8 bash && node --version;
 
 RUN yum -y update && yum clean all
 
