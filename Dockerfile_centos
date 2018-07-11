@@ -7,9 +7,9 @@ ENV GOROOT /usr/local/go
 
 RUN pwd
 
-#RUN curl --silent --location https://rpm.nodesource.com/setup_8.x | bash -
+RUN curl --silent --location https://rpm.nodesource.com/setup_8.x | bash -
 
-RUN yum-config-manager --enable rhel-server-rhscl-7-rpms && yum install -y --nogpgcheck \
+RUN yum install -y --nogpgcheck \
     wget \
     initscripts \
     curl \
@@ -17,10 +17,9 @@ RUN yum-config-manager --enable rhel-server-rhscl-7-rpms && yum install -y --nog
     gcc \
     libc6-dev \
     git \
-    rh-nodejs8 \
+    nodejs \
     bzip2 \
-    bzip2-libs && \
-    scl enable rh-nodejs8 bash;
+    bzip2-libs;
 
 RUN yum update && yum clean all;
 
