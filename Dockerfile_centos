@@ -19,9 +19,11 @@ RUN yum install -y --nogpgcheck \
     git \
     nodejs \
     bzip2 \
+    make \
+    gcc-g++ \
     bzip2-libs;
 
-RUN yum update && yum clean all;
+RUN yum update -y && yum clean all;
 
 RUN wget https://dl.google.com/go/go1.9.2.linux-amd64.tar.gz
 
@@ -39,9 +41,11 @@ RUN mkdir -p $GOPATH/src/github.com/grafana && \
 RUN cd $GOPATH/src/github.com/grafana/grafana && \
     go run build.go setup && \
     go run build.go build && \
-    npm install -g yarn && \
+    npm install -g yarn;
+
+RUN cd $GOPATH/src/github.com/grafana/grafana && \
     yarn install --pure-lockfile && \
     npm run build;
 
+RUN chmod 777 /root/go/src/github.com/grafana/grafana
 WORKDIR /root/go/src/github.com/grafana/grafana
-
